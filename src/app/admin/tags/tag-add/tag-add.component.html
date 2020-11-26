@@ -1,1 +1,6 @@
 <p>tag-add works!</p>
+<form [formGroup]="tagForm" (ngSubmit)="onSubmit()">
+    <label for="name">Name:</label>
+    <input id="name" type="text" formControlName="name">
+    <button type="submit" [disabled]="!tagForm.valid || submitted">Submit</button>
+</form>

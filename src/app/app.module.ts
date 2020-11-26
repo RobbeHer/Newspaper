@@ -22,6 +22,7 @@ import { JournalistEditComponent } from 'src/app/admin/journalists/journalist-ed
 import { TagsComponent } from 'src/app/admin/tags/tags/tags.component';
 import { TagAddComponent } from 'src/app/admin/tags/tag-add/tag-add.component';
 import { TagEditComponent } from 'src/app/admin/tags/tag-edit/tag-edit.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { TagEditComponent } from 'src/app/admin/tags/tag-edit/tag-edit.component
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

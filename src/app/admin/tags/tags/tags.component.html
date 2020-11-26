@@ -1,3 +1,5 @@
 <p>tags works!</p>
 <a routerLink="add">add</a><br>
-<a routerLink="edit/1">edit</a>
+<ul>
+    <li *ngFor="let tag of (tags | async)">{{tag.name}} <a [routerLink]="['edit/', tag.tagID]">edit</a> | <button (click)="deleteTag(tag.tagID)">delete</button></li>
+</ul>
