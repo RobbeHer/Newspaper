@@ -1,3 +1,5 @@
 <p>journalists works!</p>
 <a routerLink="add">add</a><br>
-<a routerLink="edit/1">edit</a>
+<ul>
+    <li *ngFor="let journalist of (journalists | async)">{{journalist.firstName}} {{journalist.email}} <a [routerLink]="['edit/', journalist.userID]">edit</a> | <button (click)="deleteHournalist(journalist.userID)">delete</button></li>
+</ul>
