@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { UserLogin } from 'src/app/models/user-login.model';
+import { FormBuilder, Validators } from '@angular/forms';
+import { AuthenticateService } from 'src/app/security/services/authenticate.service';
 
 @Component({
   selector: 'app-log-in',
@@ -7,9 +10,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LogInComponent implements OnInit {
 
-  constructor() { }
+  userLogin: UserLogin = new UserLogin();
+  submitted: boolean = false;
+  loginForm = this.fb.group({
+    username: ['', Validators.required],
+    password: ['', Validators.required]
+  });
 
-  ngOnInit(): void {
+  constructor(private _authenticateService : AuthenticateService, private fb: FormBuilder) { } 
+
+  onFormValueChanges() {
+    this.loginForm.get('username').valueChanges.subscribe(val => {
+      this.userLogin.username = val;
+    });
+    this.loginForm.get('password').valueChanges.subscribe(val => {
+      this.userLogin.password = val;
+    });
   }
 
+  onSubmit() {
+    this.submitted = true;
+    this._authenticateService.authenticate(this.userLogin).subscribe(result => {
+      localStorage.setItem("token", result.token);
+      localStorage.setItem("user", JSON.stringify(result));
+    }); 
+  }
+
+  ngOnInit(): void {
+    this.onFormValueChanges();
+  }
 }
