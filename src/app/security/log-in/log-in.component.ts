@@ -33,6 +33,7 @@ export class LogInComponent implements OnInit {
     this._authenticateService.authenticate(this.userLogin).subscribe(result => {
       localStorage.setItem("token", result.token);
       localStorage.setItem("user", JSON.stringify(result));
+      location.assign("/");
     }); 
   }
 
