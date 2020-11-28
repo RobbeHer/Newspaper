@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
 import { RoleService } from 'src/app/services/role.service';
@@ -13,7 +12,7 @@ import { Role } from 'src/app/models/role.model';
 })
 export class JournalistAddComponent implements OnInit {
 
-  journalist: User = new User(0,'','','','','',0);
+  journalist: User = new User();
   role: Role;
   submitted = false;
   journalistForm = this.fb.group({

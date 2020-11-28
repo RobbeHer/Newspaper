@@ -15,7 +15,7 @@ export class RoleService {
   }
 
   getRoleOfType(type: string): Observable<Role> {
-    return this.http.get<Role>("https://localhost:44348/api/role/" + type.toLowerCase()); 
+    return this.http.get<Role>("https://localhost:44348/api/role/role-of-type/" + type.toLowerCase()); 
   }
 
   getRole(roleID: number): Observable<Role> {

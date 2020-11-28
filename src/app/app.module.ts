@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { SecurityInterceptor } from './security/security.interceptor'; 
 
 import { HomeComponent } from 'src/app/home/home/home.component';
 import { IndexComponent as HomeIndexComponent } from 'src/app/home/index/index.component';
@@ -22,6 +24,8 @@ import { JournalistEditComponent } from 'src/app/admin/journalists/journalist-ed
 import { TagsComponent } from 'src/app/admin/tags/tags/tags.component';
 import { TagAddComponent } from 'src/app/admin/tags/tag-add/tag-add.component';
 import { TagEditComponent } from 'src/app/admin/tags/tag-edit/tag-edit.component';
+import { PageNotFoundComponent } from 'src/app/error/page-not-found/page-not-found.component';
+import { ForbiddenComponent } from 'src/app/error/forbidden/forbidden.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
@@ -43,7 +47,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     JournalistEditComponent,
     TagsComponent,
     TagAddComponent,
-    TagEditComponent
+    TagEditComponent,
+    PageNotFoundComponent,
+    ForbiddenComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +57,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: SecurityInterceptor,
+    multi: true 
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
