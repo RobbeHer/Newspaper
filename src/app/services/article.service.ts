@@ -14,7 +14,27 @@ export class ArticleService {
     return this.http.get<Article[]>("https://localhost:44348/api/article"); 
   }
 
+  getArticlesOfStatus(type: string): Observable<Article[]> {
+    return this.http.get<Article[]>("https://localhost:44348/api/article/articles-of-status/" + type.toLowerCase()); 
+  }
+
+  getArticlesOfUser(id: number): Observable<Article[]> {
+    return this.http.get<Article[]>("https://localhost:44348/api/article/articles-of-user/" + id); 
+  }
+
   getArticle(id: number): Observable<Article> {
     return this.http.get<Article>("https://localhost:44348/api/article/" + id); 
+  }
+
+  addArticle(article: Article) {
+    return this.http.post<Article>("https://localhost:44348/api/article", article); 
+  }
+
+  updateArticle(articleID: number, article: Article) {
+    return this.http.put<Article>("https://localhost:44348/api/article/" + articleID, article); 
+  }
+
+  deleteArticle(articleID: number) {
+    return this.http.delete<Article>("https://localhost:44348/api/article/" + articleID);
   }
 }

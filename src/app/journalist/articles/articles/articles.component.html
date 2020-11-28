@@ -1,3 +1,5 @@
 <p>articles works!</p>
 <a routerLink="add">add</a><br>
-<a routerLink="edit/1">edit</a>
+<ul>
+    <li *ngFor="let article of (articles | async)">{{article.title}} <a [routerLink]="['edit/', article.articleID]">edit</a> | <button (click)="deleteArticle(article.articleID)">delete</button></li>
+</ul>

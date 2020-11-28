@@ -1,1 +1,18 @@
 <p>article-add works!</p>
+<form [formGroup]="articleForm">
+    <label for="title">Title:</label>
+    <input id="title" type="text" formControlName="title">
+    <label for="sub-title">Sub title:</label>
+    <input id="sub-title" type="text" formControlName="subTitle">
+    <label for="short-summary">Short summary:</label>
+    <input id="short-summary" type="text" formControlName="shortSummary">
+    <label for="body">Body:</label>
+    <input id="body" type="text" formControlName="body">
+    <label for="tag">Tag:</label>
+    <select name="tag" id="tag"  formControlName="tagID">
+        <option value="0">--</option>
+        <option *ngFor="let tag of (tags | async)" value="{{tag.tagID}}">{{tag.name}}</option>
+    </select>
+    <button (click)="saveAsDraft()" [disabled]="!articleForm.valid || submitted || isTagNotOk">Save as draft</button>
+    <button (click)="sendToReview()" [disabled]="!articleForm.valid || submitted || isTagNotOk">Send to review</button>
+</form>

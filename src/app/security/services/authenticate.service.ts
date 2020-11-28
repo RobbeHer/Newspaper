@@ -27,12 +27,25 @@ export class AuthenticateService {
     }
   } 
 
+  getUserFromLocalStorage(): User {
+    return JSON.parse(localStorage.getItem("user"));
+  }
+
   getUserRole(): string {
-    let user: User = JSON.parse(localStorage.getItem("user"));
+    let user: User = this.getUserFromLocalStorage();
     if (user !== null) {
       return user.role.name;
     } else {
       return 'Guest';
+    }
+  }
+
+  getUserId(): number {
+    let user: User = this.getUserFromLocalStorage();
+    if (user !== null) {
+      return user.userID;
+    } else {
+      return 0;
     }
   }
 
