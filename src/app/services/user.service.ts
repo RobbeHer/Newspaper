@@ -15,7 +15,9 @@ export class UserService {
   }
 
   getUsersOfType(type: string): Observable<User[]> {
-    return this.http.get<User[]>("https://localhost:44348/api/user/" + type.toLowerCase()); 
+    var re = / /gi; 
+    type = type.replace(re, "%20");
+    return this.http.get<User[]>("https://localhost:44348/api/user/users-of-type/" + type.toLowerCase()); 
   }
 
   getUser(userID: number): Observable<User> {

@@ -12,7 +12,6 @@ import { ArticleService } from 'src/app/services/article.service';
 export class ArticleComponent implements OnInit {
 
   article: Article;
-  sub;
 
   constructor(private _Activatedroute:ActivatedRoute, private _router:Router, private _articleService: ArticleService) {}
 
@@ -21,14 +20,9 @@ export class ArticleComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.sub = this._Activatedroute.params.subscribe(params => { 
+    this._Activatedroute.params.subscribe(params => { 
       let id = Number(params['id']);
-      console.warn("https://localhost:44348/api/article/" + id);
       this.getArticle(id);
     });
-  }
-
-  ngOnDestroy() {
-    this.sub.unsubscribe();
   }
 }

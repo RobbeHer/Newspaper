@@ -17,7 +17,8 @@ import { ArticlesComponent } from 'src/app/journalist/articles/articles/articles
 import { ArticleAddComponent } from 'src/app/journalist/articles/article-add/article-add.component';
 import { ArticleEditComponent } from 'src/app/journalist/articles/article-edit/article-edit.component';
 import { AdminComponent } from 'src/app/admin/admin/admin.component';
-import { ReviewComponent } from 'src/app/admin/review/review.component';
+import { ReviewsComponent } from 'src/app/admin/reviews/reviews/reviews.component';
+import { ReviewComponent } from 'src/app/admin/reviews/review/review.component';
 import { JournalistsComponent } from 'src/app/admin/journalists/journalists/journalists.component';
 import { JournalistAddComponent } from 'src/app/admin/journalists/journalist-add/journalist-add.component';
 import { JournalistEditComponent } from 'src/app/admin/journalists/journalist-edit/journalist-edit.component';
@@ -41,6 +42,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ArticleAddComponent,
     ArticleEditComponent,
     AdminComponent,
+    ReviewsComponent,
     ReviewComponent,
     JournalistsComponent,
     JournalistAddComponent,

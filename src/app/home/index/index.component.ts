@@ -17,7 +17,7 @@ export class IndexComponent implements OnInit {
   }
 
   getArticles() {
-    this.articles = this._articleService.getArticlesOfStatus("Published");
+    this.articles = this._articleService.getPublishedArticles();
   }
 
   ngOnInit(): void {

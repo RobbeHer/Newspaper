@@ -1,0 +1,4 @@
+<p>reviews works!</p>
+<ul>
+    <li *ngFor="let article of (articles | async)">{{article.title}}<a [routerLink]="['review/', article.articleID]">Review</a></li>
+</ul>

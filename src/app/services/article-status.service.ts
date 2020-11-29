@@ -15,6 +15,8 @@ export class ArticleStatusService {
   }
 
   getStatusIdOf(name: string): Observable<ArticleStatus> {
+    var re = / /gi; 
+    name = name.replace(re, "%20");
     return this.http.get<ArticleStatus>("https://localhost:44348/api/articlestatus/status-id-of/" + name.toLocaleLowerCase()); 
   }
 }

@@ -15,7 +15,13 @@ export class ArticleService {
   }
 
   getArticlesOfStatus(type: string): Observable<Article[]> {
+    var re = / /gi; 
+    type = type.replace(re, "%20");
     return this.http.get<Article[]>("https://localhost:44348/api/article/articles-of-status/" + type.toLowerCase()); 
+  }
+
+  getPublishedArticles(): Observable<Article[]> {
+    return this.http.get<Article[]>("https://localhost:44348/api/article/published-articles/"); 
   }
 
   getArticlesOfUser(id: number): Observable<Article[]> {

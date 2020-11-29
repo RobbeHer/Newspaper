@@ -15,6 +15,8 @@ export class RoleService {
   }
 
   getRoleOfType(type: string): Observable<Role> {
+    var re = / /gi; 
+    type = type.replace(re, "%20");
     return this.http.get<Role>("https://localhost:44348/api/role/role-of-type/" + type.toLowerCase()); 
   }
 

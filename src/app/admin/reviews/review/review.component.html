@@ -1,0 +1,11 @@
+<p>review works!</p>
+<button (click)="approveArticle()" [disabled]="submitted">Approve</button>
+<button (click)="declineArticle()" [disabled]="submitted">Decline</button>
+<article>
+    <p>Author: {{article.user.firstName}} {{article.user.lastName}}</p>
+    <p>{{article.tag.name}}</p>
+    <H1>{{article.title}}</H1>
+    <p>{{article.subTitle}}</p>
+    <p>{{article.shortSummary}}</p>
+    <p>{{article.body}}</p>
+</article>
