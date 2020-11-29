@@ -21,7 +21,7 @@ export class ArticleService {
   }
 
   getPublishedArticles(): Observable<Article[]> {
-    return this.http.get<Article[]>("https://localhost:44348/api/article/published-articles/"); 
+    return this.http.get<Article[]>("https://localhost:44348/api/article/published-articles"); 
   }
 
   getPublishedArticlesWithTag(tag: string): Observable<Article[]> {
@@ -32,6 +32,10 @@ export class ArticleService {
 
   getArticlesOfUser(id: number): Observable<Article[]> {
     return this.http.get<Article[]>("https://localhost:44348/api/article/articles-of-user/" + id); 
+  }
+
+  getPublishedArticlesWithFilter(filter: string): Observable<Article[]> {
+    return this.http.get<Article[]>("https://localhost:44348/api/article/published-articles-with-filter/" + filter); 
   }
 
   getArticle(id: number): Observable<Article> {
