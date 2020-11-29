@@ -3,4 +3,9 @@
     <li><a [routerLink]="['/']">home</a></li>
     <li *ngFor="let tag of (tags | async)"><a [routerLink]="['/', tag.name | lowercase]">{{tag.name}}</a></li>
 </ul>
+<form [formGroup]="filterForm" (ngSubmit)="onSubmit()">
+    <label for="filter">Filter:</label>
+    <input id="filter" type="text" formControlName="filter">
+    <button type="submit" [disabled]="!filterForm.valid || submitted">Submit</button>
+</form>
 <router-outlet></router-outlet>

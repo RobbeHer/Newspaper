@@ -12,8 +12,10 @@ import { ArticleService } from 'src/app/services/article.service';
 export class IndexComponent implements OnInit {
 
   articles: Observable<Article[]>;
+  tag: string = "";
+  filter: string = "";
 
-  constructor(private _articleService: ArticleService, private _activatedroute:ActivatedRoute, private _router:Router) {
+  constructor(private _articleService: ArticleService, private _activatedroute:ActivatedRoute) {
   }
 
   getArticles() {
@@ -24,14 +26,25 @@ export class IndexComponent implements OnInit {
     this.articles = this._articleService.getPublishedArticlesWithTag(tag);
   }
 
+  getArticlesWithFilter(filter: string) {
+    this.articles = this._articleService.getPublishedArticlesWithFilter(filter);
+  }
+
   ngOnInit(): void {
+    console.log('1')
     this._activatedroute.params.subscribe(params => { 
       let tag = params['tag'];
-      console.log(tag);
-      if (tag === undefined || tag == "") {
-        this.getArticles();
-      } else {
+      let filter = params['filter'];
+      console.log('tag: ' + tag)
+      console.log('filter: ' + filter)
+      if (tag !== undefined) {
+        this.tag = tag;
         this.getArticlesWithTag(tag);
+      } else if (filter !== undefined) {
+        this.filter = filter;
+        this.getArticlesWithFilter(filter);
+      } else {
+        this.getArticles();
       }
     });
   }

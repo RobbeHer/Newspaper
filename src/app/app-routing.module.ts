@@ -29,6 +29,7 @@ const routes: Routes = [
       { path: ':tag', component: HomeIndexComponent },
       { path: ':tag/article/:id', component: ArticleComponent },
       { path: 'article/:id', component: ArticleComponent },
+      { path: 'filter/:filter', component: HomeIndexComponent },
       { path: '', component: HomeIndexComponent }
     ] 
   },
