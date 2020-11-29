@@ -56,6 +56,7 @@ export class HomeComponent implements OnInit {
   logout(){
     this._authenticateService.logout();
     this.isLoggedIn = false;
+    location.assign('/');
   }
 
   ngOnInit(): void {
