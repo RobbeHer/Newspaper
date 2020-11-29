@@ -6,15 +6,15 @@
         <p class="mt-5">{{article.shortSummary}}</p>
         <p *ngIf="isLoggedIn" class="mt-5">{{article.body}}</p>
         <div *ngIf="!isLoggedIn">
-            <app-log-in></app-log-in>
+            <div class="card p-5">
+                <app-log-in></app-log-in>
+            </div>
         </div>
     </article>
 </div>
-
-
-
-
-
+<hr>
+<h5>Messages:</h5>
+<p *ngIf="!isLoggedIn" style="color: #FF0000">Login to send a message</p>
 <form *ngIf="isLoggedIn" [formGroup]="messageForm" (ngSubmit)="onSubmit()">
     <label for="message">Message:</label>
     <input id="message" type="text" formControlName="message">
