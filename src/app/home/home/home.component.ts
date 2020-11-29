@@ -43,7 +43,6 @@ export class HomeComponent implements OnInit {
     location.assign('/filter/' + this.filter);
     this.patchForm();
     this.submitted = false;
-
   }
 
   ngOnInit(): void {

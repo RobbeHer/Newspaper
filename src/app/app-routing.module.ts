@@ -26,10 +26,9 @@ import { AuthGuard } from 'src/app/security/guards/auth.guard';
 const routes: Routes = [
   { path: '', component: HomeComponent,
     children: [
-      { path: ':tag', component: HomeIndexComponent },
-      { path: ':tag/article/:id', component: ArticleComponent },
-      { path: 'article/:id', component: ArticleComponent },
+      { path: 'tag/:tag', component: HomeIndexComponent },
       { path: 'filter/:filter', component: HomeIndexComponent },
+      { path: 'article/:id', component: ArticleComponent },
       { path: '', component: HomeIndexComponent }
     ] 
   },

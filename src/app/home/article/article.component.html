@@ -1,2 +1,10 @@
 <p>article works!</p>
 <p *ngIf="article">{{article.title}}</p>
+<form *ngIf="isLoggedIn" [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+    <label for="message">Message:</label>
+    <input id="message" type="text" formControlName="message">
+    <button type="submit" [disabled]="!messageForm.valid || submitted">Submit</button>
+</form>
+<ul>
+    <li *ngFor="let comment of (comments | async)">{{comment.user.firstName}}: {{comment.message}}</li>
+</ul>
