@@ -12,4 +12,14 @@ export class User {
     public token: string;
     
     constructor(){}
+    fillUp(){
+        this.userID = 0;
+        this.firstName = '';
+        this.lastName = '';
+        this.email = '';
+        this.username = '';
+        this.password = '';
+        this.roleID = 0;
+        this.token = '';
+    }
 }

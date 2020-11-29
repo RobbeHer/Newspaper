@@ -1,11 +1,41 @@
-<p>home works!</p>
-<ul>
-    <li><a [routerLink]="['/']">home</a></li>
-    <li *ngFor="let tag of (tags | async)"><a [routerLink]="['/', tag.name | lowercase]">{{tag.name}}</a></li>
-</ul>
-<form [formGroup]="filterForm" (ngSubmit)="onSubmit()">
-    <label for="filter">Filter:</label>
-    <input id="filter" type="text" formControlName="filter">
-    <button type="submit" [disabled]="!filterForm.valid || submitted">Submit</button>
-</form>
-<router-outlet></router-outlet>
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <img src="/favicon.ico" width="30" height="30" class="d-inline-block align-top" alt="">
+            Newspaper
+        </a>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li *ngFor="let tag of (tags | async | slice:0:2)" class="nav-item active">
+                    <a class="nav-link" [routerLink]="['/tag/', tag.name | lowercase]">{{tag.name}}</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a  *ngFor="let tag of (tags | async | slice:2:1000)" class="dropdown-item" [routerLink]="['/tag/', tag.name | lowercase]">{{tag.name}}</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <ul class="navbar-nav">
+            <li *ngIf="isLoggedIn" class="nav-item">
+                <a class="nav-link" (click)="logout()" href="#">Logout</a>
+            </li>
+            <li *ngIf="!isLoggedIn" class="nav-item">
+                <a class="nav-link" href="/login">Login</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <form class="form-inline my-5" [formGroup]="filterForm" (ngSubmit)="onSubmit()">
+        <input class="form-control mr-sm-2" id="filter" type="text" placeholder="Search" formControlName="filter">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" [disabled]="!filterForm.valid || submitted">Submit</button>
+    </form>
+    <router-outlet></router-outlet>
+</div>

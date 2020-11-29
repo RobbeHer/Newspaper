@@ -1,4 +1,3 @@
-<p>index works!</p>
 <ul>
     <li *ngFor="let article of (articles | async)">{{article.title}} <a [routerLink]="['article/', article.articleID]">Read more</a></li>
  </ul>

@@ -1,5 +1,20 @@
-<p>article works!</p>
-<p *ngIf="article">{{article.title}}</p>
+<p >{{article.title}}</p>
+<div *ngIf="article">
+    <article>
+        <h2>{{article.title}}</h2>
+        <p class="font-weight-bold">{{article.subTitle}}</p>
+        <p class="mt-5">{{article.shortSummary}}</p>
+        <p *ngIf="isLoggedIn" class="mt-5">{{article.body}}</p>
+        <div *ngIf="!isLoggedIn">
+            <app-log-in></app-log-in>
+        </div>
+    </article>
+</div>
+
+
+
+
+
 <form *ngIf="isLoggedIn" [formGroup]="messageForm" (ngSubmit)="onSubmit()">
     <label for="message">Message:</label>
     <input id="message" type="text" formControlName="message">

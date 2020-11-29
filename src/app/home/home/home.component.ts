@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Tag } from 'src/app/models/tag.model';
+import { User } from 'src/app/models/user.model';
+import { AuthenticateService } from 'src/app/security/services/authenticate.service';
 import { TagService } from 'src/app/services/tag.service';
 
 @Component({
@@ -12,6 +14,8 @@ import { TagService } from 'src/app/services/tag.service';
 })
 export class HomeComponent implements OnInit {
 
+  user: User = new User();
+  isLoggedIn: boolean = false;
   tags: Observable<Tag[]>;
   filter: string;
   submitted = false;
@@ -19,7 +23,11 @@ export class HomeComponent implements OnInit {
     filter: ['', Validators.required]
   });
 
-  constructor(private _tagService: TagService, private fb: FormBuilder, private _activatedroute: ActivatedRoute) {
+  constructor(private router : Router,
+    private _tagService: TagService, 
+    private fb: FormBuilder, 
+    private _activatedroute: ActivatedRoute,
+    private _authenticateService: AuthenticateService) {
   }
 
   getTags() {
@@ -45,8 +53,19 @@ export class HomeComponent implements OnInit {
     this.submitted = false;
   }
 
+  logout(){
+    this._authenticateService.logout();
+    this.isLoggedIn = false;
+  }
+
   ngOnInit(): void {
     this.onFormValueChanges();
+    this.isLoggedIn = (this._authenticateService.isLoggedIn) ? true : false;
+    if (this.isLoggedIn) {
+      this.user = this._authenticateService.getUserFromLocalStorage();
+    } else {
+      this.user.firstName = 'e'
+    }
     this.getTags();
   }
 
