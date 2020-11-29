@@ -21,7 +21,7 @@ export class JournalistEditComponent implements OnInit {
     password: ['', Validators.required]
   });
 
-  constructor(private _Activatedroute:ActivatedRoute, private _router:Router, private _userService: UserService, private fb: FormBuilder) { }
+  constructor(private _activatedroute:ActivatedRoute, private _router:Router, private _userService: UserService, private fb: FormBuilder) { }
 
   getJournalist(id: number) {
     this._userService.getUser(id).subscribe(journalist => {
@@ -67,7 +67,7 @@ export class JournalistEditComponent implements OnInit {
 
   ngOnInit() {
     this.onFormValueChanges();
-    this._Activatedroute.params.subscribe(params => { 
+    this._activatedroute.params.subscribe(params => { 
       let id = Number(params['id']);
       this.getJournalist(id);
     });

@@ -23,7 +23,7 @@ export class ArticlesComponent implements OnInit {
     this.articles = this._articleService.getArticlesOfUser(id);
   }
 
-  deleteTag(id: number) {
+  deleteArticle(id: number) {
     this._articleService.deleteArticle(id).subscribe(() => {
       this.getArticles();
     });

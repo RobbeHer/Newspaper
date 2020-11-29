@@ -26,6 +26,14 @@ export class ArticleService {
     return this.http.get<Article>("https://localhost:44348/api/article/" + id); 
   }
 
+  getEditArticle(id: number): Observable<Article> {
+    return this.http.get<Article>("https://localhost:44348/api/article/edit/" + id); 
+  }
+
+  getReviewArticle(id: number): Observable<Article> {
+    return this.http.get<Article>("https://localhost:44348/api/article/review/" + id); 
+  }
+
   addArticle(article: Article) {
     return this.http.post<Article>("https://localhost:44348/api/article", article); 
   }
