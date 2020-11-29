@@ -24,6 +24,12 @@ export class ArticleService {
     return this.http.get<Article[]>("https://localhost:44348/api/article/published-articles/"); 
   }
 
+  getPublishedArticlesWithTag(tag: string): Observable<Article[]> {
+    var re = / /gi; 
+    tag = tag.replace(re, "%20");
+    return this.http.get<Article[]>("https://localhost:44348/api/article/published-articles-with-tag/" + tag.toLowerCase()); 
+  }
+
   getArticlesOfUser(id: number): Observable<Article[]> {
     return this.http.get<Article[]>("https://localhost:44348/api/article/articles-of-user/" + id); 
   }
