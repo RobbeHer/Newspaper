@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { Role } from 'src/app/models/role.model';
 import { Tag } from 'src/app/models/tag.model';
 import { User } from 'src/app/models/user.model';
 import { AuthenticateService } from 'src/app/security/services/authenticate.service';
@@ -65,7 +66,8 @@ export class HomeComponent implements OnInit {
     if (this.isLoggedIn) {
       this.user = this._authenticateService.getUserFromLocalStorage();
     } else {
-      this.user.firstName = 'e'
+      this.user.firstName = "user";
+      this.user.role = new Role(0,"user");
     }
     this.getTags();
   }

@@ -3,3 +3,32 @@
 <ul>
     <li *ngFor="let article of (articles | async)">{{article.title}} <a [routerLink]="['edit/', article.articleID]">edit</a> | <button (click)="deleteArticle(article.articleID)">delete</button></li>
 </ul>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<hr>
+<p style="color: green">Should have been:</p>
+<ul>
+    <li *ngFor="let article of (articles | async)">{{article.title}} 
+        <div *ngIf="article.articleStatus.name !== 'To review' ">
+            <a [routerLink]="['edit/', article.articleID]">edit</a> | <button (click)="deleteArticle(article.articleID)">delete</button>
+        </div>
+    </li>
+</ul>
