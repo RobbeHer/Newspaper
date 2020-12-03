@@ -61,7 +61,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.onFormValueChanges();
-    this.isLoggedIn = (this._authenticateService.isLoggedIn) ? true : false;
+    this.isLoggedIn = (this._authenticateService.isLoggedIn()) ? true : false;
     if (this.isLoggedIn) {
       this.user = this._authenticateService.getUserFromLocalStorage();
     } else {

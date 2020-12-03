@@ -29,6 +29,12 @@
             <li *ngIf="!isLoggedIn" class="nav-item">
                 <a class="nav-link" href="/login">Login</a>
             </li>
+            <li *ngIf="user.role.name == 'Journalist'" class="nav-item">
+                <a class="nav-link" href="/journalist">Journalist</a>
+            </li>
+            <li *ngIf="user.role.name == 'Admin'" class="nav-item">
+                <a class="nav-link" href="/admin">Admin</a>
+            </li>
         </ul>
     </div>
 </nav>
